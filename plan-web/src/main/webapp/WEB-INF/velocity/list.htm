@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户集合</title>
+</head>
+<body>
+    <h2>用户集合</h2>
+	<ul>
+	    #foreach($user in $users)
+	        <li><a href="${baseUrl}velocity/detail/${user.id}">${user.userName}</a></li>
+	    #end
+	</ul>
+</body>
+</html>

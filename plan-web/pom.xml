@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.chenxun</groupId>
+		<artifactId>plan-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>plan-web</artifactId>
+	<packaging>war</packaging>
+	<properties>
+		<spring.version>4.2.4.RELEASE</spring.version>
+	</properties>
+	<dependencies>
+		<!-- 支持Ajax 请求的类型转化 ，不添加的话只支持返回string ， 不使用jackson，也可以使用fastjson在代码中显式转化 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<!-- velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+		<!-- velocity ,freemarker必须 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<!-- .可选 -->
+		<!-- 
+		<dependency> 
+		    <groupId>org.apache.velocity</groupId> 
+		    <artifactId>velocity-tools</artifactId> 
+			<version>2.0</version> 
+	    </dependency>
+	    -->
+		<!-- If you make use of Spring’s 'dateToolAttribute' or 'numberToolAttribute' in your Velocity views, you will also need to include the velocity-tools-generic-1.x.jar -->
+		<!-- 
+		<dependency> 
+		    <groupId>org.apache.velocity</groupId> 
+		    <artifactId>velocity-tools-generic</artifactId> 
+			<version>1.4</version> 
+		</dependency>
+		-->
+	</dependencies>
+	<build>
+		<plugins>
+			<!-- define the project compile level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>utf-8</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<finalName>dev</finalName>
+				<filters>
+					<filter>profile-dev.properties</filter>
+				</filters>
+			</build>
+		</profile>
+		<!--手动指定非默认的    mvn clean package -P test  -->
+		<profile>
+			<id>test</id>
+			<build>
+			    <!-- war name  此web的content path 不是项目名称 是 finalName  所以finalName和profile的各个文件配置一致就ok-->
+				<finalName>test</finalName>
+				<filters>
+					<filter>profile-test.properties</filter>
+				</filters> 
+			</build>
+		</profile>
+	</profiles>
+</project>
