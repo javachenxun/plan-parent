@@ -14,7 +14,7 @@
   </parent>
   <modules>
   	<module>plan-web</module>
-  	<module>plan-jxl</module>
+  	<module>plan-common</module>
   	<module>plan-boot</module>
   </modules>
 </project>
