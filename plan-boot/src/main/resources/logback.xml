@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="layout.pattern.default" value="[%d{yyyy-MM-dd HH:mm:ss} %p %c{1} %X{requestId}] %m%n" />
+	<property name="log.level" value="DEBUG" />
+	<property name="encoder" value="UTF-8"></property>
+	
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+	    <Encoding>${encoder}</Encoding>  
+	    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>${log.level}</level>
+		</filter>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${layout.pattern.default}</pattern>
+		</layout>
+	</appender>
+	
+    <appender name="file"  class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <Encoding>${encoder}</Encoding>  
+        <!-- 添加这个当天日志文件名称是这个  第二天会把它里面的内容添加到下面的名称文件中；如果没有这个则会直接以下面的格式命名当天的日志文件 -->
+        <!-- <File>logs/test.log</File>   -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <FileNamePattern>logs/total/test-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>10</MaxHistory>  
+            <MaxFileSize>50MB</MaxFileSize>  
+        </rollingPolicy>  
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <pattern>${layout.pattern.default}</pattern>  
+        </layout>  
+    </appender>  
+    
+    <!-- 分包分类日志 -->
+    <appender name="modules-1-file"  class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <Encoding>${encoder}</Encoding>  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <FileNamePattern>logs/modules1/test-modules-1-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>10</MaxHistory>  
+            <MaxFileSize>50MB</MaxFileSize>  
+        </rollingPolicy>  
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">  
+            <pattern>${layout.pattern.default}</pattern>  
+        </layout>  
+    </appender> 
+    <!-- 控制包或类的日志的输出 name为类或包名称 -->
+    <logger name="com.chenxun">
+        <!--如果 appender-ref关联的设置了日志设置了级别，level不起作用  ，去掉关联级别【注释掉filter或level标签都行】才起作用-->
+        <!-- <level value="trace" /> -->
+             <appender-ref ref="modules-1-file" />
+    </logger>
+    
+    <!-- 控制整个日志的输出：也是<loger>元素，但是它是根loger -->
+	<root>
+	   <!--如果 appender-ref关联的设置了日志设置了级别，level不起作用  ，去掉关联级别【注释掉filter或level标签都行】才起作用-->
+       <!-- <level value="trace" /> -->
+       <!-- 不添加appender-ref ref= 的关联只会创建日志记录的空文件，不会生成日志 -->
+	   <appender-ref ref="file" />
+	   <appender-ref ref="console" />
+	</root>
+</configuration>  
