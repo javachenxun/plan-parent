@@ -1,4 +1,4 @@
-package com.chenxun;
+package com.chenxun.web.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 说明：
  */
 @RestController
-public class Application {
+public class AllReturnTypeTest {
 
 	@RequestMapping("/string")
 	public String returnString() {

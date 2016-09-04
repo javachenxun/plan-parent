@@ -6,11 +6,22 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>plan-boot</artifactId>  
-    <!-- Add typical dependencies for a web application -->
 	 <dependencies>
+        <!-- Add typical dependencies for a web application -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- common -->
+		<dependency>
+		    <groupId>com.chenxun</groupId>
+		    <artifactId>plan-common</artifactId>
+		    <version>${project.version}</version><!-- 继承父工程版本 -->
 		</dependency>
 	</dependencies>
 	<build>
