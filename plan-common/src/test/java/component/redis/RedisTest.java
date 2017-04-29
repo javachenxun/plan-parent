@@ -10,7 +10,7 @@ import org.junit.Test;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Transaction;
 
-import com.chenxun.component.redis.JedisClient;
+import com.chenxun.redis.JedisClient;
 
 /** 
  * @author：chenxun
@@ -21,8 +21,7 @@ import com.chenxun.component.redis.JedisClient;
 public class RedisTest {
 	
     Jedis jedis = JedisClient.getJedis();
-	
-	
+
     @Test
 	public  void methodString1() throws InterruptedException {
     	

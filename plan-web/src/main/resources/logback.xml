@@ -31,7 +31,7 @@
         </layout>  
     </appender>  
     
-    <!-- 分包分类日志 -->
+    <!-- 分包日志 -->
     <appender name="modules-1-file"  class="ch.qos.logback.core.rolling.RollingFileAppender">  
         <Encoding>${encoder}</Encoding>  
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  

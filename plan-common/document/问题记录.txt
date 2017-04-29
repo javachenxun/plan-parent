@@ -1,0 +1,6 @@
+1.从使用场景上来说，CyclicBarrier是让多个线程互相等待某一事件的发生，然后同时被唤醒。而上文讲的CountDownLatch
+     是让某一线程等待多个线程的状态，然后该线程被唤醒。
+http://mp.weixin.qq.com/s?__biz=MzA3NTQyNDc5OQ==&mid=2648885590&idx=1&sn=46cdfb3c68c501db64de5bc7d1b2ec9f&scene=0#wechat_redirect
+2.未完：日志
+3.httpclient 另外的封装
+4.springmvc 能否直接请求？代替httpclient？

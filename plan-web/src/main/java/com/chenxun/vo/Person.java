@@ -14,12 +14,12 @@ public class Person {
 	static List<Person> list= new ArrayList<Person>();
 	
 	static{
-		Person wukong = new Person(1, 20, "悟空");
-		Person bajie = new Person(2, 25, "八戒");
-		Person shifu = new Person(2, 30,"师傅");
-		list.add(wukong);
-		list.add(bajie);
-		list.add(shifu);
+		Person name1 = new Person(1, 20, "name1");
+		Person name2 = new Person(2, 25, "name2");
+		Person name3 = new Person(2, 30,"name3");
+		list.add(name1);
+		list.add(name2);
+		list.add(name3);
 	}
 	
 	
@@ -60,6 +60,4 @@ public class Person {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-
-  
 }

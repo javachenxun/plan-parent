@@ -5,10 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * @author：chenxun 
- * 创建时间：2016年5月12日 下午11:16:44 
- * 参考： 
- * 说明：
+ * Created by chenxun on 2016/5/12 11:16
  */
 @EnableAutoConfiguration
 @ComponentScan
