@@ -1,0 +1,80 @@
+<div class="msdn">
+#set($page=$result)
+#set($url=$pageUrl)
+#set($totalPages=$page.total)
+#set($curPageNo=$page.pageNumber)
+#set($start=2)
+#set($end=8)
+#if ($!totalPages>1)
+
+	#if($end >= $totalPages)
+		#set($end=$totalPages)
+	#end
+	
+	#if($curPageNo > 7)
+		#set($start=$curPageNo - 2)
+		#set($end=$curPageNo + 2)
+	#end				
+			
+	#if($end >= $totalPages)
+		#set($start=$curPageNo - 5)
+		#set($end=$totalPages)
+	#end
+	#if($start <= 0) 
+		#set($start=2)
+	#end
+<a class='sumpage'>共 $page.count 条记录</a>							
+	## 上一页
+	#if ($curPageNo>1)
+		#set($pre_pageNo=($curPageNo - 1))
+	<a class="prev" href="javascript:void(0);" onclick="jumpToPage('${pre_pageNo}');">上一页</a>
+		#else
+	<a class="prev-disabled" href="javascript: void(0);">上一页</a>
+		#end
+	<a href="javascript: void(0)"  #if ($curPageNo == 1) class="current" #end onclick="jumpToPage('1');">1</a>
+		#if($curPageNo > 5) 
+	<a href="javascript: void(0)" class="more">...</a>
+		#end
+		## 中间页
+ 		#foreach ($pageNumber in [$start..$end])
+			#if ($pageNumber == $curPageNo)
+	<a href="javascript: void(0)" class="current">${pageNumber}</a>
+		    #else
+				#if ($pageNumber < ($curPageNo - 3))
+				#else
+	<a href="javascript: void(0)" onclick="jumpToPage('${pageNumber}');">${pageNumber}</a>
+				#end
+		 #end
+	#end
+					
+## 下一页
+#if($totalPages > $end)
+	<a href="javascript: void(0)" class="more">...</a>
+	<a class="next" href="javascript:void(0);" onclick="jumpToPage('$!totalPages');">$!totalPages</a>
+	#end
+	#if ($curPageNo<$totalPages)
+		#set($next_pageNo=($curPageNo+1))
+	<a class="next" href="javascript:void(0);" onclick="jumpToPage('${next_pageNo}');">下一页</a>
+	#else
+	<a class="next-disabled" href="javascript: void(0);">下一页</a>
+	#end
+					
+#else
+	<a class="prev-disabled" href="javascript: void(0);">上一页</a>
+	<a href="javascript: void(0)" class="current">1</a>
+	<a class="next-disabled" href="javascript: void(0);">下一页</a>
+#end
+<input type='text' id='pageNumber' style="width: 35px"> <input type='button' value='GO' onclick='jumpToPage($("#pageNumber").val(),$totalPages)'>
+	
+</div>
+<input value="$!queryString" name="queryString" id="queryString" type="hidden"/>
+<input #if($!dataContainer) value="$!dataContainer" #else value="data_table_list;page_common_nav"  #end name="dataContainer" id="dataContainer" type="hidden"/>
+<script>
+	function jumpToPage(pageNo,totalPage){
+        var regExp = /^[0-9]*$/;
+        if(regExp.test(pageNo)){
+            pageNo = pageNo>totalPage?totalPage:pageNo;
+			page(pageNo);
+        }
+	}
+</script>

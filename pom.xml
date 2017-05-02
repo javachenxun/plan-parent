@@ -15,11 +15,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>4.12</junit.version>
-        <logback.version>0.9.28</logback.version>
+        <commons-logging.version>1.2</commons-logging.version>
         <fastjson.version>1.2.16</fastjson.version>
-        <jedis.version>2.8.1</jedis.version>
         <jexcelapi.version>2.6.12</jexcelapi.version>
+        <mybatis.version>3.2.8</mybatis.version>
+        <mybatis-spring.version>1.3.0</mybatis-spring.version>
     </properties>
 
     <modules>
@@ -28,21 +28,13 @@
         <module>plan-boot</module>
     </modules>
 
+    <!--  作为spring boot 的pom的补充jar管理依赖  -->
     <dependencyManagement>
         <dependencies>
-
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-            </dependency>
-
-            <!-- logback+slf4j -->
-            <dependency>
-                <groupId>ch.qos.logback</groupId>
-                <artifactId>logback-classic</artifactId>
-                <version>${logback.version}</version>
-                <type>jar</type>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
             </dependency>
 
             <dependency>
@@ -52,23 +44,32 @@
             </dependency>
 
             <dependency>
-                <groupId>redis.clients</groupId>
-                <artifactId>jedis</artifactId>
-                <version>${jedis.version}</version>
-                <type>jar</type>
-            </dependency>
-
-            <dependency>
                 <groupId>net.sourceforge.jexcelapi</groupId>
                 <artifactId>jxl</artifactId>
                 <version>${jexcelapi.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${mybatis-spring.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
-        <plugins>
+        <pluginManagement>
+            <plugins>
+                <!-- 插件版本管理 -->
+
+            </plugins>
+        </pluginManagement>
+<!--        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -78,7 +79,6 @@
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
-        </plugins>
+        </plugins>-->
     </build>
-
 </project>

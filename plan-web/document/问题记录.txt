@@ -1,0 +1,12 @@
+1.profile-dev.properties 不生效
+2.property-placeholder 替换注意？
+  编译后的文件不替换，运行期自动替换
+  也可以将${ }这种形式的变量用在spring提供的注解当中，为注解的属性提供值
+3.$.fn.zTree.init($("#treeDemo"), setting, zNodes); 其中zNodes 需要json格式
+ 请区分 json 对象 和 json 格式的 字符串，利用 typeof 调试看看
+ 解决方法1：produces = { MediaType.APPLICATION_JSON_UTF8_VALUE }
+ 解决方法2：json字符串转json对象：jQuery.parseJSON(jsonStr);  底层调用JSON.parse,直接调用也可以
+            json对象转json字符串：JSON.stringify(jsonObj);
+            都属于2个方法 ECMAScript的方法
+ 检验类型使用：console.log(jQuery.type(zNodes))
+4.

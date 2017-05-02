@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/tx
+             http://www.springframework.org/schema/tx/spring-tx.xsd
+     ">
+    <!--  注意2.x后的个别属性不一致 -->
+    <bean id="planDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="${db.plan.url}"/>
+        <property name="username" value="${db.plan.username}"/>
+        <property name="password" value="${db.plan.password}"/>
+        <property name="initialSize" value="${db.plan.initialSize}"/>
+        <property name="maxActive" value="${db.plan.maxActive}"/>
+        <property name="maxIdle" value="${db.plan.maxIdle}"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="100"/>
+        <property name="maxWait" value="30000"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="validationQuery" value="SELECT 1"/>
+        <property name="timeBetweenEvictionRunsMillis" value="30000"/>
+        <property name="numTestsPerEvictionRun" value="30"/>
+        <property name="minEvictableIdleTimeMillis" value="600000"/>
+    </bean>
+
+    <!--MyBatis-Spring 利用了存在于 Spring 中的 DataSourceTransactionManager  必须添加-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource">
+            <ref bean="planDataSource"/>
+        </property>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="sqlSessionFactoryDataSource" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="planDataSource"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.chenxun.repository.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryDataSource"/>
+    </bean>
+</beans>
