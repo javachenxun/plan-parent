@@ -115,21 +115,8 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>dev</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>utf-8</encoding>
-                </configuration>
-            </plugin>
-        </plugins>
         <resources>
             <resource>
-              <!--  <directory>src/main/resources</directory>-->
                 <directory>${project.basedir}/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
@@ -143,11 +130,11 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-   <!--         <properties>
-                <web.path>http://localhost:8080/dev/</web.path>
-            </properties>-->
+            <properties>
+                <web-path>http://localhost:8080/dev/</web-path>
+            </properties>
             <build>
-              <!--  <finalName>dev</finalName>-->
+                <finalName>dev</finalName>
                 <filters>
                   <filter>profile-dev.properties</filter>
                 </filters>

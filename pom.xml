@@ -66,10 +66,9 @@
         <pluginManagement>
             <plugins>
                 <!-- 插件版本管理 -->
-
             </plugins>
         </pluginManagement>
-<!--        <plugins>
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -79,6 +78,6 @@
                     <encoding>utf-8</encoding>
                 </configuration>
             </plugin>
-        </plugins>-->
+        </plugins>
     </build>
 </project>
