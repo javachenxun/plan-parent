@@ -32,15 +32,13 @@
         </dependency>
 
         <dependency>
-            <groupId>com.chenxun</groupId>
-            <artifactId>plan-common</artifactId>
-            <version>${project.version}</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-
         </dependency>
 
         <!-- 支持Ajax 请求的类型转化 ，不添加的话只支持返回string ， 不使用jackson，也可以使用fastjson在代码中显式转化 -->
@@ -130,9 +128,6 @@
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
-            <properties>
-                <web-path>http://localhost:8080/dev/</web-path>
-            </properties>
             <build>
                 <finalName>dev</finalName>
                 <filters>

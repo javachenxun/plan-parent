@@ -1,4 +1,4 @@
-package com.chenxun.httpclient;
+package com.chenxun.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

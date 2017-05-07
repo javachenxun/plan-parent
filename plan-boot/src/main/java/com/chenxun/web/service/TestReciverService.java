@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chenxun.httpclient.HttpClientExcuter;
+import com.chenxun.utils.HttpClientExcuter;
 import com.chenxun.web.service.entity.Person;
 
 /**

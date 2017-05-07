@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import com.chenxun.httpclient.HttpClientExcuter;
+import com.chenxun.utils.HttpClientExcuter;
 import com.chenxun.web.service.entity.Person;
 
 /** 
