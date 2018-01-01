@@ -7,3 +7,8 @@
 # ignore Maven generated target folders
 target
 .idea
+/*/target/
+/plan-parent.iml
+/plan-web/logs/
+/*/*.iml
+/.idea/
